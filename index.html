@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Manager</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> <!-- Font Awesome -->
+    
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #f8f9fa, #e9ecef);
+        }
+
+        header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 15px 20px;
+            position: relative;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem; /* Increased font size */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline-block;
+            margin-right: 15px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+            color: #ff0800;
+        }
+
+        #main-content {
+            margin: 0 auto;
+            padding: 20px;
+            max-width: 1200px; /* Increased width */
+        }
+
+        #user-greeting {
+            font-size: 1.5rem; /* Increased font size */
+            font-weight: 700;
+            margin-bottom: 20px; /* Increased spacing */
+        }
+
+        main > p {
+            font-size: 1.25rem; /* Increased font size */
+            font-weight: bold;
+            text-align: left;
+            margin: 0;
+            line-height: 1.8; /* Increased line height for better readability */
+        }
+        footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%; /* Ensure full width */
+            left: 0; /* Align to the left */
+            margin: 0; /* Remove margin */
+            }
+
+            footer a {
+                color: #fff;
+                margin: 0 10px;
+            }
+
+            footer a:hover {
+                color: #007bff;
+            }
+
+            footer i {
+                font-size: 1.5rem;
+            }
+
+
+        .modal-dialog {
+            max-width: 600px;
+        }
+
+        .modal-content {
+            border-radius: 8px;
+        }
+
+        .modal-header {
+            border-bottom: 1px solid #ddd;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .btn-light {
+            background-color: #f8f9fa;
+            color: #000;
+            border: 1px solid #ddd;
+        }
+
+        /* Additional Styles */
+        .container {
+            margin-top: 20px;
+        }
+
+        .container h2 {
+            margin-bottom: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Event Manager</h1>
+        <nav>
+            <ul id="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <?php if (isset($_SESSION['username'])): ?>
+                <li><a href="create-event.html"><i class="fas fa-calendar-plus"></i> Create Event</a></li>
+                <?php else: ?>
+                <li><a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+                <li><a href="register.html"><i class="fas fa-user-plus"></i> Register</a></li>
+                <?php endif; ?>
+            </ul>
+        </nav>
+    </header>
+    
+    
+    
+    
+    
+    <!-- Main content -->
+    <div id="main-content" class="container-fluid">
+        <main class="mt-4">
+            <div id="user-greeting" class="mb-4">
+                <?php if (isset($_SESSION['username'])): ?>
+                    <p>Hello, <?php echo htmlspecialchars($_SESSION['username']); ?>!</p>
+                <?php endif; ?>
+            </div>
+            <p>Welcome to the Event Manager, your ultimate solution for creating, managing, and
+            tracking events. Whether you are organizing a conference, workshop, or personal gathering, 
+            our platform provides an easy-to-use interface for event creation, management, and updates.
+            Seamlessly register and log in to access your events, edit details, and stay organized. 
+            Join us in streamlining event management with an intuitive design and powerful features.</p>
+            <div id="events-list" class="row"></div>
+        </main>
+    </div>
+
+    <!-- Edit Event Modal -->
+    <div id="edit-modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Edit Event</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="edit-form" method="POST" action="edit-event.php">
+                        <input type="hidden" id="edit-event-id" name="event_id">
+                        <div class="form-group">
+                            <label for="edit-title">Event Title:</label>
+                            <input type="text" id="edit-title" name="title" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-description">Description:</label>
+                            <textarea id="edit-description" name="description" class="form-control" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-date">Date:</label>
+                            <input type="date" id="edit-date" name="date" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-time">Time:</label>
+                            <input type="time" id="edit-time" name="time" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update Event</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-light text-center py-3 mt-4">
+        <p>&copy; 2024 Event Manager. All rights reserved.</p>
+        <div>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="https://github.com/your-repo-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+
+        </div>
+    </footer>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

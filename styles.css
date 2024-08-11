@@ -1,0 +1,313 @@
+/* Reset some default styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: linear-gradient(to right, #f8f9fa, #e9ecef); /* Background gradient */
+}
+
+/* Ensure the wrapper takes up full height and uses flexbox */
+#wrapper {
+    display: flex;
+    min-height: 100vh; /* Make sure the wrapper takes up full viewport height */
+    flex-direction: column; /* Ensure that footer stays at the bottom */
+}
+
+/* Sidebar styling */
+#sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #343a40; /* Dark color */
+    color: #fff;
+    padding: 20px;
+    overflow-y: auto;
+    transition: transform 0.3s ease; /* Smooth transition */
+    border-left: 2px solid #fff; /* Separator on the left */
+    z-index: 990; /* Ensure it's below the header but above the content */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+#sidebar.d-none {
+    transform: translateX(250px); /* Hide sidebar off-screen */
+}
+
+#sidebar.d-block {
+    transform: translateX(0); /* Show sidebar */
+}
+
+#sidebar h4 {
+    margin-top: 0;
+}
+
+#sidebar ul {
+    padding-left: 0;
+    margin-top: 20px;
+}
+
+#sidebar ul li {
+    border-bottom: 1px solid #444; /* Separator line between items */
+    margin-bottom: 10px;
+}
+
+#sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+#sidebar ul li a:hover {
+    color: #f8f9fa; /* Light color on hover */
+    background-color: #495057; /* Darker background on hover */
+    padding: 5px;
+    border-radius: 4px;
+}
+
+/* Sidebar cancel button styling */
+#sidebar #sidebar-cancel {
+    border: none;
+    background-color: transparent;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    align-self: flex-end; /* Align the cancel button to the right */
+    margin-top: -5px; /* Adjust to align vertically with MENU button */
+}
+
+#sidebar #sidebar-cancel:hover {
+    color: #f8f9fa; /* Light color on hover */
+}
+
+/* Main content styling */
+#main-content {
+    margin-right: 0; /* Ensure no margin when the sidebar is visible */
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    z-index: 1; /* Ensure it stays below the header */
+}
+
+/* Header styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #007bff;
+    color: #fff;
+    padding: 15px;
+    position: fixed; /* Keep the header fixed at the top */
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0; /* Remove any margin */
+    height: 60px; /* Set a fixed height for the header */
+    z-index: 1000; /* Ensure it's on top */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 3rem;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+header .navbar-brand {
+    margin-right: auto; /* Pushes the brand to the left */
+}
+
+header .navbar-text {
+    margin-right: 15px; /* Add some space to the right of the greeting */
+}
+
+/* Navigation styling */
+nav {
+    display: flex;
+    justify-content: center; /* Center the nav horizontally */
+    align-items: center; /* Center vertically if needed */
+    flex-grow: 1; /* Allow the nav to take up available space */
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Sidebar toggle button styling */
+header #sidebar-toggle {
+    background-color: #fff;
+    border: none;
+    color: #007bff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
+    position: relative;
+    z-index: 1001; /* Ensure it's above the header */
+}
+
+/* Footer styling */
+footer {
+    background-color: #343a40;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%; /* Ensure full width */
+    left: 0; /* Align to the left */
+    margin: 0; /* Remove margin */
+    }
+
+    footer a {
+        color: #fff;
+        margin: 0 10px;
+    }
+
+    footer a:hover {
+        color: #007bff;
+    }
+
+    footer i {
+        font-size: 1.5rem;
+    }
+/* Main section styling */
+main {
+    margin-right: 0;
+    padding: 80px 20px 20px 20px;
+    /* Add top padding equal to the header height + some extra space */
+    flex: 1;
+}
+
+/* Event card styling */
+
+.event-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 10px;
+    text-align: left;
+    padding: 10px;
+    width: 100%; /* Full width for responsiveness */
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    z-index: 1; /* Ensure it stays below the header */
+}
+
+.event-card h3 {
+    margin-top: 0;
+}
+
+.event-buttons {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px; /* Space between buttons */
+}
+
+/* Adjust button styles for better alignment */
+.edit-btn,
+.delete-btn {
+    margin-right: 10px;
+}
+
+.btn {
+    padding: 8px 12px;
+}
+/* Button styling */
+.edit-btn, .delete-btn {
+    flex: 1; /* Make buttons take up equal width */
+}
+
+.edit-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Modal Background */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; /* 10% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* Close Button */
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Hero Section Styling */
+.hero-section {
+    background: url('hero-image.jpg') no-repeat center center/cover;
+    color: #fff;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.hero-section h2 {
+    font-size: 2.5rem;
+}
+
+.hero-section p {
+    font-size: 1.25rem;
+}
+
+.hero-section .btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+}
+
+.hero-section .btn-primary:hover {
+    background-color: #0056b3;
+}
