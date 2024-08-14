@@ -22,12 +22,13 @@
             color: #fff;
             padding: 15px 20px;
             position: relative;
+            border-bottom: 2px solid #0056b3;
         }
 
         header h1 {
             margin: 0;
-            font-size: 2.5rem; /* Increased font size */
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+            font-size: 2.5rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
         }
 
         nav ul {
@@ -46,6 +47,7 @@
             color: #fff;
             text-decoration: none;
             font-weight: bold;
+            transition: color 0.3s, text-decoration 0.3s;
         }
 
         nav ul li a:hover {
@@ -56,54 +58,56 @@
         #main-content {
             margin: 0 auto;
             padding: 20px;
-            max-width: 1200px; /* Increased width */
+            max-width: 1200px;
         }
 
         #user-greeting {
-            font-size: 1.5rem; /* Increased font size */
+            font-size: 1.5rem;
             font-weight: 700;
-            margin-bottom: 20px; /* Increased spacing */
+            margin-bottom: 20px;
         }
 
         main > p {
-            font-size: 1.25rem; /* Increased font size */
-            font-weight: bold;
+            font-size: 1.25rem;
+            font-weight: 400;
             text-align: left;
             margin: 0;
-            line-height: 1.8; /* Increased line height for better readability */
+            line-height: 1.8;
         }
+
         footer {
             background-color: #343a40;
             color: #fff;
-            padding: 10px;
+            padding: 15px 20px;
             text-align: center;
             position: fixed;
             bottom: 0;
-            width: 100%; /* Ensure full width */
-            left: 0; /* Align to the left */
-            margin: 0; /* Remove margin */
-            }
+            width: 100%;
+            left: 0;
+        }
 
-            footer a {
-                color: #fff;
-                margin: 0 10px;
-            }
+        footer a {
+            color: #fff;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
 
-            footer a:hover {
-                color: #007bff;
-            }
+        footer a:hover {
+            color: #007bff;
+        }
 
-            footer i {
-                font-size: 1.5rem;
-            }
-
+        footer i {
+            font-size: 1.5rem;
+        }
 
         .modal-dialog {
-            max-width: 600px;
+            max-width: 90%;
+            margin: 30px auto;
         }
 
         .modal-content {
-            border-radius: 8px;
+            border-radius: 10px;
         }
 
         .modal-header {
@@ -120,7 +124,6 @@
             border: 1px solid #ddd;
         }
 
-        /* Additional Styles */
         .container {
             margin-top: 20px;
         }
@@ -129,6 +132,40 @@
             margin-bottom: 20px;
         }
 
+        @media (max-width: 768px) {
+            header {
+                padding: 10px 15px;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            nav ul li {
+                display: block;
+                margin-bottom: 10px;
+            }
+
+            nav ul li a {
+                font-size: 1.1rem;
+            }
+
+            #user-greeting {
+                font-size: 1.25rem;
+            }
+
+            main > p {
+                font-size: 1rem;
+            }
+
+            footer {
+                padding: 10px 15px;
+            }
+
+            footer a {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -146,10 +183,6 @@
             </ul>
         </nav>
     </header>
-    
-    
-    
-    
     
     <!-- Main content -->
     <div id="main-content" class="container-fluid">
@@ -211,10 +244,8 @@
             <a href="#"><i class="fab fa-twitter"></i></a>
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="https://github.com/your-repo-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
-
         </div>
     </footer>
-
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
